@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  postgres:
+    container_name: postgresdb
+    image: postgres
+    hostname: postgres
+    ports:
+      - "5455:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - /home/main/Documents/kazispaces/desrc/denj_v0/data_v0:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - datanet
+
+  pgadmin:
+    container_name: pgadminui
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    restart: unless-stopped
+    networks:
+      - datanet
+
+networks:
+  datanet:
+
+volumes:
+  postgres-data:
