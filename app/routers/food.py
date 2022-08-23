@@ -22,9 +22,21 @@ templates = Jinja2Templates(
 
 @router.get("/")
 def homePage(request: Request, db: Session = Depends(get_db)):
-    whens = db.query(models.Log).order_by(models.Log.when.desc())
+    logs = db.query(models.Log).order_by(models.Log.when.desc()).all()
+    T = []
+    for log in logs:
+        totals = {"proteins": 0, "carbs": 0, "fats": 0, "calories": 0}
+        for food in log.foods:
+            totals["proteins"] += food.proteins
+            totals["carbs"] += food.carbs
+            totals["fats"] += food.fats
+            totals["calories"] += food.calories
+
+        totals['log'] = log.when
+        totals['id'] = log.id
+        T.append(totals)
     return templates.TemplateResponse(
-        "index.html", context={"request": request, "whens": whens}
+        "index.html", context={"request": request, 'T': T}
     )
 
 

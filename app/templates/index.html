@@ -71,80 +71,32 @@
 
 			<div class="row t20">
 				<div class="col-lg-12">
-					<h4 class="text-center text-white"><strong>Existing Records (30)</strong></h4>
+					<h4 class="text-center text-white"><strong>Existing Records ({{ T|length }})</strong></h4>
 				</div>
 			</div>
-
+			{% for row in T|batch(4) %}
 			<div class="row t20">
+				{% for log in row %}
 				<div class="col-lg-3">
 					<div class="panel panel-warning">
 						<div class="panel-body text-bold">
-							<i class="glyphicon glyphicon-calendar"></i> December 14, 2017 
+							<i class="glyphicon glyphicon-calendar"></i> {{log['log'].strftime("%B %d, %Y")}}
 
-							<a class="btn btn-primary btn-xs pull-right" href="{{url_for('view', log_id=1)}}">
+							<a class="btn btn-primary btn-xs pull-right" href="{{url_for('view', log_id=log['id'])}}">
 								View <i class="glyphicon glyphicon-arrow-right"></i>
 							</a>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item text-bold"><span class="badge">60</span> Protein</li>
-							<li class="list-group-item text-bold"><span class="badge">49</span> Carbohydrate</li>
-							<li class="list-group-item text-bold"><span class="badge">55</span> Fat</li>
-							<li class="list-group-item text-bold"><span class="badge">955</span> Calories</li>
+							<li class="list-group-item text-bold"><span class="badge">{{log['proteins']}}</span> Protein</li>
+							<li class="list-group-item text-bold"><span class="badge">{{log['carbs']}}</span> Carbohydrate</li>
+							<li class="list-group-item text-bold"><span class="badge">{{log['fats']}}</span> Fat</li>
+							<li class="list-group-item text-bold"><span class="badge">{{log['calories']}}</span> Calories</li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-3">
-					<div class="panel panel-warning">
-						<div class="panel-body text-bold">
-							<i class="glyphicon glyphicon-calendar"></i> December 14, 2017 
-
-							<a class="btn btn-primary btn-xs pull-right" href="{{url_for('view', log_id=1)}}">
-								View <i class="glyphicon glyphicon-arrow-right"></i>
-							</a>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item text-bold"><span class="badge">60</span> Protein</li>
-							<li class="list-group-item text-bold"><span class="badge">49</span> Carbohydrate</li>
-							<li class="list-group-item text-bold"><span class="badge">55</span> Fat</li>
-							<li class="list-group-item text-bold"><span class="badge">955</span> Calories</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="panel panel-warning">
-						<div class="panel-body text-bold">
-							<i class="glyphicon glyphicon-calendar"></i> December 14, 2017 
-
-							<a class="btn btn-primary btn-xs pull-right" href="{{url_for('view', log_id=1)}}">
-								View <i class="glyphicon glyphicon-arrow-right"></i>
-							</a>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item text-bold"><span class="badge">60</span> Protein</li>
-							<li class="list-group-item text-bold"><span class="badge">49</span> Carbohydrate</li>
-							<li class="list-group-item text-bold"><span class="badge">55</span> Fat</li>
-							<li class="list-group-item text-bold"><span class="badge">955</span> Calories</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="panel panel-warning">
-						<div class="panel-body text-bold">
-							<i class="glyphicon glyphicon-calendar"></i> December 14, 2017 
-
-							<a class="btn btn-primary btn-xs pull-right" href="{{url_for('view', log_id=1)}}">
-								View <i class="glyphicon glyphicon-arrow-right"></i>
-							</a>
-						</div>
-						<ul class="list-group">
-							<li class="list-group-item text-bold"><span class="badge">60</span> Protein</li>
-							<li class="list-group-item text-bold"><span class="badge">49</span> Carbohydrate</li>
-							<li class="list-group-item text-bold"><span class="badge">55</span> Fat</li>
-							<li class="list-group-item text-bold"><span class="badge">955</span> Calories</li>
-						</ul>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
+			{% endfor %}
 
 			<footer>
 				<div class="row pad">
