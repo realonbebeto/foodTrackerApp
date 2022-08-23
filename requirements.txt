@@ -15,6 +15,8 @@ greenlet==1.1.2
 h11==0.13.0
 httptools==0.4.0
 idna==3.3
+importlib-metadata==4.12.0
+importlib-resources==5.9.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
 Mako==1.2.1
@@ -37,10 +39,11 @@ SQLAlchemy==1.4.40
 SQLAlchemy-Utils==0.38.3
 starlette==0.19.1
 toml==0.10.2
-typing_extensions==4.3.0
+typing-extensions==4.3.0
 ujson==5.4.0
 urllib3==1.26.11
 uvicorn==0.17.6
 uvloop==0.16.0
 watchgod==0.8.2
 websockets==10.3
+zipp==3.8.1

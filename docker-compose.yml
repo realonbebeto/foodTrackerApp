@@ -7,10 +7,10 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres@123
+      POSTGRES_USER: "${DATABASE_USERNAME}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
     volumes:
-      - /home/main/Documents/kazispaces/desrc/source_db:/var/lib/postgresql/data
+      - "${HOST_VOLUME}:${CONTAINER_VOLUME}"
     restart: unless-stopped
     networks:
       - datanet
@@ -23,8 +23,8 @@ services:
     ports:
       - "8080:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
     restart: unless-stopped
     networks:
       - datanet
