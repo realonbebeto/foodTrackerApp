@@ -5,12 +5,12 @@ services:
     image: postgres
     hostname: postgres
     ports:
-      - "5455:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres@123
     volumes:
-      - /home/main/Documents/kazispaces/desrc/denj_v0/data_v0:/var/lib/postgresql/data
+      - /home/main/Documents/kazispaces/desrc/source_db:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
       - datanet
